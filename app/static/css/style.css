@@ -1,0 +1,874 @@
+/* ---
+Modern Dark Theme (inspired by Roadrunner)
+--- */
+
+/* 1. Root Variables & Font Import */
+:root {
+    --dark-bg: #121212; /* Very dark grey, not pure black */
+    --card-bg: #1a1a1a;
+    --border-color: #2a2a2a;
+    --text-light: #e0e0e0;
+    --text-secondary: #aaaaaa;
+    
+    /* --- UPDATED COLORS --- */
+    --accent-primary: #00e0c6; /* A bright, modern teal */
+    --accent-secondary: #00aaff; /* A brighter blue */
+    
+    /* Using Inter font, as added in base.html */
+    --font-sans: 'Inter', sans-serif;
+}
+
+/* 2. Global Resets */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    width: 100%;
+}
+
+body {
+    font-family: var(--font-sans);
+    /* --- UPDATED BACKGROUND --- */
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #121212 70%);
+    color: var(--text-light);
+    line-height: 1.6;
+    min-height: 100vh; /* Ensure gradient fills viewport */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 3. Navbar Styling (from new base.html structure) */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%; /* 5% margin on left/right */
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* --- ADDED DEPTH --- */
+}
+
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+.nav-brand:hover {
+    color: var(--accent-primary);
+}
+
+.nav-links-main {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links-main a {
+    color: var(--text-light);
+    font-weight: 500;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-links-main a:hover {
+    color: #ffffff;
+    border-bottom: 2px solid var(--accent-primary);
+    transform: translateY(-2px); /* --- ADDED HOVER --- */
+}
+
+.nav-links-auth {
+    display: flex;
+    gap: 1rem;
+}
+
+/* General button style */
+.nav-button {
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.2s ease;
+    border: 1px solid var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+.nav-button:hover {
+    background-color: var(--accent-primary);
+    color: var(--dark-bg);
+    transform: translateY(-2px); /* --- ADDED HOVER --- */
+    box-shadow: 0 4px 10px rgba(0, 224, 198, 0.2);
+}
+
+/* Primary CTA button (like "Contact Us" or "Register") */
+.nav-button-primary {
+    background-color: var(--accent-primary);
+    color: var(--dark-bg);
+    border: 1px solid var(--accent-primary); /* --- ADDED BORDER --- */
+}
+
+.nav-button-primary:hover {
+    background-color: var(--accent-secondary);
+    border-color: var(--accent-secondary);
+    color: var(--dark-bg);
+    transform: translateY(-2px); /* --- ADDED HOVER --- */
+    box-shadow: 0 4px 10px rgba(0, 170, 255, 0.2);
+}
+
+
+/* 4. Main Content & Page Layout */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0;
+}
+
+.page-header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: uppercase; /* --- ADDED STYLE --- */
+    letter-spacing: 1px;
+}
+
+/* 5. Utility & Form Styles */
+.flashes {
+    list-style: none;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--accent-primary); /* --- CHANGED BORDER --- */
+    color: var(--accent-primary);
+    border-radius: 8px;
+}
+
+.form-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2.5rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: none; /* --- REMOVED BORDER (replaced by graphic) --- */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3); /* --- ADDED DEPTH --- */
+    position: relative; /* --- ADDED FOR GRAPHIC --- */
+}
+
+.form-container h2 {
+    text-align: center;
+    color: #ffffff;
+}
+
+.form-container label {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-light);
+}
+
+.form-container input[type="text"],
+.form-container input[type="password"],
+.form-container input[type="email"],
+.form-container input[type="number"],
+.form-container textarea,
+.form-container select,
+.form-container input[type="file"] { /* --- ADDED file --- */
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--dark-bg);
+    border-radius: 6px;
+    color: var(--text-light);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Style the file input button */
+.form-container input[type="file"]::file-selector-button {
+    background-color: var(--accent-primary);
+    color: var(--dark-bg);
+    border: none;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-right: 1rem;
+}
+.form-container input[type="file"]::file-selector-button:hover {
+    background-color: var(--accent-secondary);
+}
+
+
+.form-container textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.error-message {
+    color: #ff5b5b; /* Red for errors */
+    font-size: 0.9rem;
+}
+
+/* CTA Button for forms */
+.cta-button {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    padding: 0.9rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    background-color: var(--accent-primary);
+    color: var(--dark-bg);
+    transition: all 0.2s ease; /* --- UPDATED TRANSITION --- */
+}
+
+.cta-button:hover {
+    background-color: var(--accent-secondary);
+    transform: scale(1.02); /* --- ADDED HOVER --- */
+    box-shadow: 0 4px 15px rgba(0, 224, 198, 0.25);
+}
+
+/* 6. Page-Specific Styles (Leaderboard, Articles) */
+
+/* Leaderboard */
+.leaderboard-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column layout by default */
+    gap: 2rem;
+}
+
+.leaderboard-thanks {
+    background: var(--card-bg);
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-primary);
+}
+
+.leaderboard-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column */
+    gap: 2rem;
+}
+
+/* On wider screens, show two columns */
+@media (min-width: 768px) {
+    .leaderboard-grid {
+        grid-template-columns: 1fr 1fr; /* Two columns */
+    }
+}
+
+.leaderboard-column h2 {
+    color: var(--accent-primary);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.leaderboard-list {
+    list-style: none;
+    padding: 0;
+}
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* --- ADDED DEPTH --- */
+}
+.leaderboard-rank {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    min-width: 40px;
+}
+.leaderboard-user {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-light);
+}
+.leaderboard-score {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+.leaderboard-score-money {
+    color: #28a745; /* Green for money */
+}
+
+/* Article Page */
+/* This styles the container for the articles */
+.article-list-container {
+    display: grid;
+    gap: 2rem; /* This adds the space between articles */
+}
+
+/* This styles the article card itself */
+.article-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: all 0.2s ease;
+}
+
+.article-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-primary);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.article-item h3 {
+    color: var(--accent-primary);
+    margin-bottom: 0.5rem;
+}
+
+.article-item p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem; /* Adds space between text and button */
+}
+
+/* This styles the new "Read Article" button */
+.cta-button-outline {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.2s ease;
+    
+    /* This creates the "outline" style */
+    background-color: transparent;
+    color: var(--accent-primary);
+    border: 1px solid var(--accent-primary);
+    
+    align-self: flex-start; /* Aligns button to the left */
+}
+
+.cta-button-outline:hover {
+    /* On hover, it fills in */
+    background-color: var(--accent-primary);
+    color: var(--dark-bg);
+    transform: scale(1.05);
+}
+
+
+/* 7. Homepage Styles */
+
+/* This is the new hero style for the donate page */
+.donate-hero {
+    padding: 3rem 1rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 2rem;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://placehold.co/1200x400/1a1a1a/1a1a1a?text=+');
+    background-size: cover;
+    background-position: center;
+    border: 1px solid var(--border-color);
+}
+.donate-hero h1 {
+    color: #ffffff;
+    font-size: 2.5rem;
+}
+.donate-hero p {
+    color: var(--text-light);
+    font-size: 1.15rem;
+}
+
+
+.hero {
+    text-align: center;
+    padding: 4rem 1rem;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    position: relative; /* --- ADDED FOR GRAPHIC --- */
+    border: none; /* --- REMOVED BORDER (replaced by graphic) --- */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3); /* --- ADDED DEPTH --- */
+    overflow: hidden; /* --- ADDED FOR GRAPHIC --- */
+}
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase; /* --- ADDED STYLE --- */
+    letter-spacing: 1px;
+}
+.hero p {
+    font-size: 1.25rem;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+
+.stats-highlight {
+    text-align: center;
+    padding: 4rem 1rem;
+    margin: 2rem 0;
+}
+.stats-highlight h2 {
+    font-size: 1.5rem;
+    color: var(--accent-primary); /* --- CHANGED COLOR --- */
+    font-weight: 600;
+    text-transform: uppercase; /* --- ADDED STYLE --- */
+    letter-spacing: 1.5px;
+}
+.stat-number {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #ffffff; /* --- CHANGED COLOR --- */
+    line-height: 1.1;
+    text-shadow: 0 0 20px rgba(0, 224, 198, 0.3); /* --- ADDED GLOW --- */
+}
+
+.how-it-works {
+    margin: 2rem 0;
+}
+.how-it-works h2 {
+    text-align: center;
+    font-size: 2rem;
+    text-transform: uppercase; /* --- ADDED STYLE --- */
+    letter-spacing: 1px;
+}
+.steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+.step {
+    padding: 2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* --- ADDED DEPTH --- */
+    transition: all 0.2s ease;
+}
+.step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* 8. Footer */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+/* --- 9. NEW SECTION: Graphic Enhancements --- */
+/* This adds the corner brackets from the inspiration image */
+.hero::before,
+.hero::after,
+.form-container::before,
+.form-container::after, {      /* --- ADDED THIS LINE --- */
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-color: var(--accent-primary);
+    border-style: solid;
+}
+
+/* Top-left corner bracket */
+.hero::before,
+.form-container::before,
+.ngo-card::before {     /* --- ADDED THIS LINE --- */
+    top: -5px;
+    left: -5px;
+    border-width: 4px 0 0 4px;
+}
+
+/* Bottom-right corner bracket */
+.hero::after,
+.form-container::after,
+.ngo-card::after {      /* --- ADDED THIS LINE --- */
+    bottom: -5px;
+    right: -5px;
+    border-width: 0 4px 4px 0;
+}
+
+/* --- 10. NEW SECTION: Number Input Stepper --- */
+/* This wraps the input and buttons */
+.stepper-input {
+    display: flex;
+}
+
+/* Style for the custom + and - buttons */
+.stepper-btn {
+    width: 40px;
+    height: 48px; /* Match the input padding */
+    background-color: var(--border-color);
+    color: var(--text-light);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.2s ease;
+}
+.stepper-btn:hover {
+    background-color: var(--accent-primary);
+    color: var(--dark-bg);
+}
+
+/* Style for the number input itself */
+#weight_input, #money_input {
+    text-align: center;
+    /* Remove default browser arrows */
+    -moz-appearance: textfield;
+}
+#weight_input::-webkit-outer-spin-button,
+#weight_input::-webkit-inner-spin-button,
+#money_input::-webkit-outer-spin-button,  /* --- ADDED THIS LINE --- */
+#money_input::-webkit-inner-spin-button { /* --- ADDED THIS LINE --- */
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Fix border radius for the group */
+#stepper-minus {
+    border-radius: 6px 0 0 6px;
+}
+#stepper-plus {
+    border-radius: 0 6px 6px 0;
+}
+#weight_input {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+}
+
+/* --- 11. NEW SECTION: Find NGO (Find Centers) Page --- */
+.ngo-card-grid {
+    display: grid;
+    /* This new line creates a fixed 3-column grid */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+/* This makes it stack to 1 column on smaller screens */
+@media (max-width: 900px) {
+    .ngo-card-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.ngo-card {
+    background: var(--card-bg);
+    /* border: 1px solid var(--border-color); -- REMOVED */
+    border: none; /* --- CHANGED --- */
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    position: relative; /* --- ADDED --- */
+    transition: all 0.2s ease; /* --- ADDED --- */
+}
+
+/* --- ADDED HOVER EFFECT --- */
+.ngo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.ngo-card h3 {
+    color: var(--accent-primary);
+    margin-top: 0;
+}
+
+.ngo-address {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    flex-grow: 1; /* Pushes button to bottom */
+}
+
+.ngo-map-link {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.2s ease;
+    background-color: transparent;
+    color: var(--accent-primary);
+    border: 1px solid var(--accent-primary);
+    margin-top: auto; /* Aligns to bottom */
+}
+.ngo-map-link:hover {
+    background-color: var(--accent-primary);
+    color: var(--dark-bg);
+}
+
+/* --- 12. NEW SECTION: Recycling Process Page --- */
+.recycling-content-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.recycling-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.recycling-section h2 {
+    color: var(--accent-primary);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.recycling-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.recycling-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.recycling-steps {
+    list-style: none;
+    padding-left: 0;
+    counter-reset: step; /* Create a counter */
+}
+
+.recycling-steps li {
+    position: relative;
+    padding-left: 45px;
+    margin-bottom: 2rem;
+}
+
+/* This creates the custom step number */
+.recycling-steps li::before {
+    content: counter(step);
+    counter-increment: step;
+    position: absolute;
+    left: 0;
+    top: -5px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--accent-primary);
+    border-radius: 50%;
+}
+
+.recycling-steps h4 {
+    font-size: 1.25rem;
+    color: #ffffff;
+}
+
+.recycling-steps p {
+    color: var(--text-secondary);
+}
+
+.recycling-cta {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.recycling-cta h3 {
+    color: var(--accent-primary);
+    font-size: 1.8rem;
+}
+
+.recycling-cta .cta-button {
+    margin-top: 1rem;
+    width: auto;
+    padding: 0.8rem 2.5rem;
+}
+
+/* --- 13. NEW SECTION: Profile Page Donation List --- */
+
+.donation-list {
+    list-style: none;
+    padding: 0;
+}
+
+.donation-item {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.donation-image {
+    flex-shrink: 0; /* Prevents image from shrinking */
+    width: 120px;
+}
+
+.donation-image img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover; /* Crops image to fit */
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+
+.donation-info {
+    flex-grow: 1; /* Takes up remaining space */
+    flex-basis: 300px; /* Will wrap if space is tight */
+}
+
+.donation-info strong {
+    color: var(--text-light);
+}
+
+.donation-info p {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.donation-grade {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    display: inline-block; /* Makes it wrap tightly */
+    margin-top: 0.5rem;
+}
+
+/* Specific colors for grades */
+.donation-grade.grade-A {
+    background-color: rgba(0, 224, 198, 0.1); /* Teal bg */
+    color: var(--accent-primary); /* Teal text */
+}
+
+/* This targets 'B/C' */
+.donation-grade.grade-C { 
+    background-color: rgba(255, 180, 0, 0.1); /* Yellow/Orange bg */
+    color: #ffb400; /* Yellow/Orange text */
+}
+
+.donation-grade.grade-N\/A { /* For 'N/A' */
+    background-color: rgba(170, 170, 0, 0.1); /* Grey bg */
+    color: var(--text-secondary); /* Grey text */
+}
+
+.donation-desc {
+    font-style: italic;
+    color: var(--text-light) !important;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* --- 14. NEW SECTION: Events Page --- */
+.events-list-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.event-item {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 1.5rem;
+    padding: 2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.event-date {
+    flex-shrink: 0;
+    width: 80px;
+    text-align: center;
+    background: var(--dark-bg);
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    padding: 1rem 0;
+    height: fit-content; /* Make sure it doesn't stretch */
+}
+
+.event-date .month {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.event-date .day {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    line-height: 1.2;
+}
+
+.event-details {
+    flex-grow: 1;
+    flex-basis: 300px; /* Allow wrapping */
+}
+
+.event-details h3 {
+    color: var(--accent-primary);
+    margin-top: 0;
+}
+
+.event-details .event-meta {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+}

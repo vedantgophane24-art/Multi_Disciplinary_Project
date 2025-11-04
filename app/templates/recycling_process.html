@@ -1,0 +1,68 @@
+<!-- This template 'extends' the base.html layout -->
+{% extends "base.html" %}
+
+<!-- This 'block' will be injected into the 'content' block in base.html -->
+{% block content %}
+    <div class="page-header">
+        <h1>The Textile Recycling Process</h1>
+        <p>Turning old clothes into new opportunities.</p>
+    </div>
+
+    <!-- Main content container -->
+    <div class="recycling-content-container">
+        
+        <div class="recycling-section">
+            <h2>Why Recycle Textiles?</h2>
+            <p>Every year, tons of clothing and textiles end up in landfills. Recycling not only diverts this waste but also significantly benefits our planet and economy.</p>
+        </div>
+        
+        <div class="recycling-card-grid">
+            <div class="recycling-card">
+                <h3>It's Sustainable</h3>
+                <p>Recycling textiles saves massive amounts of water, reduces the need for virgin materials like cotton and polyester (which is oil-based), and cuts down on greenhouse gas emissions from landfills.</p>
+            </div>
+            <div class="recycling-card">
+                <h3>It's Profitable</h3>
+                <p>A circular economy creates new green jobs. Recycled materials can be sold to manufacturers, and upcycled products (like bags or rugs from old jeans) can be sold directly to consumers online.</p>
+            </div>
+        </div>
+
+        <div class="recycling-section">
+            <h2>Our Complete Recycling Process</h2>
+            <p>Here’s what happens to your clothes after you donate them, especially if they are graded B or C (not suitable for resale).</p>
+            
+            <ol class="recycling-steps">
+                <li>
+                    <h4>1. Sorting & Grading</h4>
+                    <p>This is the most crucial step. Our team manually sorts every item.
+                        <strong>Grade A:</strong> High-quality, wearable items are cleaned and sold at low cost to our partner NGOs.
+                        <strong>Grade B/C:</strong> Worn-out, stained, or torn items are sent for recycling.</p>
+                </li>
+                <li>
+                    <h4>2. Shredding</h4>
+                    <p>The Grade B/C textiles are put through industrial shredders, which tear the fabric into small scraps. Zippers and buttons are removed, often with magnets.</p>
+                </li>
+                <li>
+                    <h4>3. Cleaning & Carding</h4>
+                    <p>The shredded scraps (now called "shoddy") are thoroughly cleaned. They are then put through a "carding" machine, which combs and untangles the fibers, aligning them into a continuous web.</p>
+                </li>
+                <li>
+                    <h4>4. Spinning & Re-Weaving</h4>
+                    <p>These carded fibers are re-spun into yarn. This new, recycled yarn can be used to weave or knit new fabrics, which will become our future upcycled products.</p>
+                </li>
+                <li>
+                    <h4>5. Other Uses (Downcycling)</h4>
+                    <p>Fibers that are too short to be spun into yarn are "downcycled." They are pressed into new materials, such as insulation for cars, carpet padding, or industrial cleaning rags.</p>
+                </li>
+            </ol>
+        </div>
+        
+        <div class="recycling-cta">
+            <h3>Your Donation Matters</h3>
+            <p>Every item you donate, wearable or not, has value and can be kept out of the landfill. Thank you for contributing to a circular economy!</p>
+            <a href="{{ url_for('main.donate') }}" class="cta-button">Donate Now</a>
+        </div>
+
+    </div>
+
+{% endblock %}

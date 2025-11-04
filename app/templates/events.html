@@ -1,0 +1,56 @@
+<!-- This template 'extends' the base.html layout -->
+{% extends "base.html" %}
+
+<!-- This 'block' will be injected into the 'content' block in base.html -->
+{% block content %}
+<div class="page-header">
+    <h1>Upcoming Events</h1>
+    <p>Get involved! Join our upcoming donation drives and workshops.</p>
+</div>
+
+<div class="events-list-container">
+    
+    <!-- Event 1 -->
+    <div class="event-item">
+        <div class="event-date">
+            <span class="month">DEC</span>
+            <span class="day">15</span>
+        </div>
+        <div class="event-details">
+            <h3>Annual Winter Clothing Drive</h3>
+            <p class="event-meta"><strong>When:</strong> Saturday, December 15th, 9:00 AM - 5:00 PM</p>
+            <p class="event-meta"><strong>Where:</strong> Besant Nagar Beach (Near the community center)</p>
+            <p>Join us for our biggest drive of the year! We'll be collecting winter clothes (blankets, sweaters, jackets) to support Chennai's homeless shelters. All Grade A donations will be distributed by our partners the following week.</p>
+        </div>
+    </div>
+
+    <!-- Event 2 -->
+    <div class="event-item">
+        <div class="event-date">
+            <span class="month">JAN</span>
+            <span class="day">12</span>
+        </div>
+        <div class="event-details">
+            <h3>Upcycling Workshop: Jeans to Bags</h3>
+            <p class="event-meta"><strong>When:</strong> Sunday, January 12th, 1:00 PM - 3:00 PM</p>
+            <p class="event-meta"><strong>Where:</strong> Our Office (Goonj - Chennai location)</p>
+            <p>Learn how we turn Grade B/C jeans into stylish and durable tote bags. This is a hands-on workshop where you can learn basic sewing and upcycling techniques. Limited spots available! (Details on our future store page).</p>
+        </div>
+    </div>
+
+    <!-- Event 3 -->
+    <div class="event-item">
+        <div class="event-date">
+            <span class="month">JAN</span>
+            <span class="day">26</span>
+        </div>
+        <div class="event-details">
+            <h3>Republic Day Collection Drive</h3>
+            <p class="event-meta"><strong>When:</strong> Sunday, January 26th, 10:00 AM - 4:00 PM</p>
+            <p class="event-meta"><strong>Where:</strong> All 11 of our partner NGO locations</p>
+            <p>Celebrate by giving back. All our partner NGOs will be accepting clothing donations all day. This is a great time to drop off any items you've logged on the app.</p>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

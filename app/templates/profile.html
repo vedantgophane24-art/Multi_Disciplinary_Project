@@ -1,0 +1,74 @@
+<!-- This template 'extends' the base.html layout -->
+{% extends "base.html" %}
+
+<!-- This 'block' will be injected into the 'content' block in base.html -->
+{% block content %}
+<div class="page-header">
+    <h1>My Profile</h1>
+    <h2>Welcome, {{ current_user.username }}!</h2>
+    <!-- Display the user's total diverted waste, rounded to 2 decimal places -->
+    <p>Total waste diverted: <strong>{{ "%.2f"|format(current_user.total_waste_diverted_kg) }} kg</strong></p>
+</div>
+
+<div class="profile-donations">
+    <h2>My Donations</h2>
+    {% if donations %}
+        <!-- We're changing this from a <ul> to a <div> for better card styling -->
+        <div class="donation-list">
+            
+            <!-- Loop through each donation, newest first -->
+            {% for donation in donations %}
+            
+            <!-- This is the new card layout for a single donation -->
+            <div class="donation-item">
+                
+                <!-- NEW: Image Column -->
+                <!-- Only show this block if an image was uploaded for this donation -->
+                {% if donation.image_filename %}
+                <div class="donation-image">
+                    <!-- 
+                      This link securely calls the '/uploads/<filename>' route
+                      we created in app/routes.py to get the image.
+                    -->
+                    <img src="{{ url_for('main.get_uploaded_file', filename=donation.image_filename) }}" alt="Donated cloth">
+                </div>
+                {% endif %}
+
+                <!-- Donation Info Column -->
+                <div class="donation-info">
+                    <!-- Show the timestamp -->
+                    <strong>{{ donation.timestamp.strftime('%Y-%m-%d') }}</strong>
+                    
+                    <!-- Show Donation Details -->
+                    <p>
+                        {% if donation.donation_type == 'Money' %}
+                            Donated <strong>{{ "%.2f"|format(donation.amount) }} {{ donation.currency }}</strong>
+                        {% elif donation.estimated_weight_kg %}
+                            Donated <strong>{{ "%.2f"|format(donation.estimated_weight_kg) }} kg</strong> of {{ donation.donation_type }}
+                        {% else %}
+                            Logged a donation of {{ donation.donation_type }}
+                        {% endif %}
+                        (to: {{ donation.ngo.name }})
+                    </p>
+                    
+                    <!-- NEW: AI Grade Display -->
+                    <!-- Only show this if the AI has provided a grade -->
+                    {% if donation.grade %}
+                        <p class="donation-grade grade-{{ donation.grade.split(' ')[-1] }}">
+                            AI Grade: <strong>{{ donation.grade }}</strong>
+                        </p>
+                    {% endif %}
+
+                    <!-- Show the user's description, if they wrote one -->
+                    {% if donation.description %}
+                        <p class="donation-desc"><em>"{{ donation.description }}"</em></p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>You have not logged any donations yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

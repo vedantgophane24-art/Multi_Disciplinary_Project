@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="form-container">
+        <h2>Register</h2>
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.username.label }}<br>
+                {{ form.username(size=32) }}<br>
+                {% for error in form.username.errors %}
+                <span class="error-message">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.email.label }}<br>
+                {{ form.email(size=64) }}<br>
+                {% for error in form.email.errors %}
+                <span class="error-message">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.password.label }}<br>
+                {{ form.password(size=32) }}<br>
+                {% for error in form.password.errors %}
+                <span class="error-message">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.password2.label }}<br>
+                {{ form.password2(size=32) }}<br>
+                {% for error in form.password2.errors %}
+                <span class="error-message">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>{{ form.submit(class='cta-button') }}</p>
+        </form>
+        <p>Already have an account? <a href="{{ url_for('main.login') }}">Click to Sign In!</a></p>
+    </div>
+{% endblock %}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Use a variable for the title -->
+    {% if title %}
+    <title>{{ title }} - Smart Recycler</title>
+    {% else %}
+    <title>Smart Recycler</title>
+    {% endif %}
+
+    <!-- Google Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Link to your stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <!-- Brand/Logo -->
+            <a href="{{ url_for('main.index') }}" class="nav-brand">Smart Recycler</a>
+            
+            <!-- Main navigation links -->
+            <div class="nav-links-main">
+                <a href="{{ url_for('main.donate') }}">Donate</a>
+                <a href="{{ url_for('main.find_ngo') }}">Find Centers</a>
+                <a href="{{ url_for('main.leaderboard') }}">Leaderboard</a>
+                <a href="{{ url_for('main.articles') }}">Articles</a>
+                <a href="{{url_for('main.recycling_process') }}">Recycling: Explained</a>
+                <a href="{{ url_for('main.events') }}">Events</a>
+            </div>
+            
+            <!-- Auth links (styled as buttons) -->
+            <div class="nav-links-auth">
+                {% if current_user.is_anonymous %}
+                    <a href="{{ url_for('main.login') }}" class="nav-button">Login</a>
+                    <a href="{{ url_for('main.register') }}" class="nav-button nav-button-primary">Register</a>
+                {% else %}
+                    <a href="{{ url_for('main.profile') }}" class="nav-button">My Profile</a>
+                    <a href="{{ url_for('main.logout') }}" class="nav-button">Logout</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- This is where flashed messages (e.g., 'Donation successful!') will appear -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+
+        <!-- This 'block' is where child templates (like index.html) will inject their content -->
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Smart Recycler. All rights reserved.</p>
+        <!-- Signup form has been removed -->
+    </footer>
+
+    <!-- Link to your JavaScript file -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    <!-- Child templates can add their own scripts here -->
+    {% block scripts %}{% endblock %}
+</body>
+</html>
+

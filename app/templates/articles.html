@@ -1,0 +1,60 @@
+<!-- This template 'extends' the base.html layout -->
+{% extends "base.html" %}
+
+<!-- This 'block' will be injected into the 'content' block in base.html -->
+{% block content %}
+    <div class="page-header">
+        <h1>Articles & Resources</h1>
+        <p>Learn more about textile waste, recycling, and the impact of donating.</p>
+    </div>
+
+    <!-- 
+    This is the new static list of articles.
+    Each <a> tag links directly to the external article and opens in a new tab.
+    -->
+    <div class="article-list-container">
+        
+        <div class="article-item">
+            <div class="article-content">
+                <h3>Unsustainable fashion and textiles in focus for International Day of Zero Waste 2025</h3>
+                <p>Ahead of the International Day of Zero Waste 2025, events in Nairobi, New York and across the world have shone a spotlight on waste in the fashion and textiles industry, highlighting the environmental and social challenges of overproduction and overconsumption caused by the sector’s linear business model.</p>
+                <!-- This link goes to the external article -->
+                <a href="https://www.unep.org/news-and-stories/press-release/unsustainable-fashion-and-textiles-focus-international-day-zero" class="cta-button-outline" target="_blank" rel="noopener noreferrer">Read Article</a>
+            </div>
+        </div>
+
+        <div class="article-item">
+            <div class="article-content">
+                <h3>What Really Happens to Your Unwanted Clothes?</h3>
+                <p>This article traces the journey of donated textiles, from collection bins to global markets.</p>
+                <a href="https://greenamerica.org/unraveling-fashion-industry/what-really-happens-unwanted-clothes" class="cta-button-outline" target="_blank" rel="noopener noreferrer">Read Article</a>
+            </div>
+        </div>
+
+        <div class="article-item">
+            <div class="article-content">
+                <h3>Textile Recycling Is Getting a Much Needed Update</h3>
+                <p>With currently only 1 percent of clothes being recycled, the textile industry has a big waste problem. Here are the people stitching together a solution.</p>
+                <a href="https://en.reset.org/textile-recycling-is-getting-a-much-needed-update/?gad_source=1&gad_campaignid=23140286608&gbraid=0AAAAAD27bt-4n-gz22qWaiCm4tfohJ369&gclid=CjwKCAiAwqHIBhAEEiwAx9cTeRvuactDAkDmrC2H7s0J3JsotKe0xzxW5ApnkQg93wp3t2SQiaVyzxoCnSQQAvD_BwE" class="cta-button-outline" target="_blank" rel="noopener noreferrer">Read Article</a>
+            </div>
+        </div>
+
+        <div class="article-item">
+            <div class="article-content">
+                <h3>R-Strategies for a Circular Economy</h3>
+                <p>An article on what are the R-Streategies and how can one implement them for the greater good</p>
+                <a href="https://www.circularise.com/blogs/r-strategies-for-a-circular-economy" class="cta-button-outline" target="_blank" rel="noopener noreferrer">Read Article</a>
+            </div>
+        </div>
+
+        <div class="article-item">
+            <div class="article-content">
+                <h3>The Environmental Crisis Caused by Textile Waste</h3>
+                <p>This blog covers everything you need to know about the challenge of managing textile waste, the impact it has on the environment, and how you can help!</p>
+                <a href="https://www.roadrunnerwm.com/blog/textile-waste-environmental-crisis" class="cta-button-outline" target="_blank" rel="noopener noreferrer">Read Article</a>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

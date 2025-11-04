@@ -1,0 +1,54 @@
+<!-- This template 'extends' the base.html layout -->
+{% extends "base.html" %}
+
+<!-- This 'block' will be injected into the 'content' block in base.html -->
+{% block content %}
+<div class="page-header">
+    <h1>Find Collection Centers</h1>
+    <p>A list of our partner NGOs and collection centers in Chennai.</p>
+</div>
+
+<!-- 
+  This is the new grid container. 
+  The .ngo-card-grid class is styled in your style.css 
+  to create the 3-column layout.
+-->
+<div class="ngo-card-grid">
+    
+    <!-- Check if the 'ngos' list (from routes.py) has any items -->
+    {% if ngos %}
+        
+        <!-- Loop through each NGO and create a card for it -->
+        {% for ngo in ngos %}
+        <div class="ngo-card">
+            <h3>{{ ngo.name }}</h3>
+            
+            <p class="ngo-address">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16" style="vertical-align: -0.125em; margin-right: 5px; color: var(--text-secondary);">
+                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                </svg>
+                {{ ngo.address }}
+            </p>
+            
+            <!-- 
+              This builds a Google Maps search query.
+              We add the ngo.latitude and ngo.longitude to the URL.
+            -->
+            <a href="https://www.google.com/maps/search/?api=1&query={{ ngo.latitude }},{{ ngo.longitude }}" class="ngo-map-link" target="_blank" rel="noopener noreferrer">
+                View on Map
+            </a>
+        </div>
+        {% endfor %}
+    
+    {% else %}
+        <!-- Show this message if there are no NGOs in the database -->
+        <p>No collection centers have been added yet. Please check back soon!</p>
+    {% endif %}
+
+</div>
+
+<!-- 
+  THIS IS THE FIX:
+  We must close the 'content' block that we opened at the top.
+-->
+{% endblock %}

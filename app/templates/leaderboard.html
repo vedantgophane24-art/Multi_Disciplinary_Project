@@ -1,0 +1,63 @@
+<!-- This template 'extends' the base.html layout -->
+{% extends "base.html" %}
+
+<!-- This 'block' will be injected into the 'content' block in base.html -->
+{% block content %}
+    <div class="page-header">
+        <h1>Top Donators</h1>
+    </div>
+
+    <!-- Thank you message -->
+    <div class="leaderboard-thank-you">
+        <p>A huge thank you to all our donators! Your contributions make a real difference, whether it's diverting textile waste from landfills or providing financial support to our partner NGOs. You are all heroes!</p>
+    </div>
+
+    <!-- Two-column container -->
+    <div class="leaderboard-container">
+        
+        <!-- Column 1: Top Textile Donators -->
+        <div class="leaderboard-column">
+            <h2>By Textile Waste Diverted</h2>
+            <ol class="leaderboard-list">
+                {% if top_waste_donators %}
+                    {% for user in top_waste_donators %}
+                        <li class="leaderboard-item">
+                            <span class="leaderboard-rank">{{ loop.index }}</span>
+                            <span class="leaderboard-user">{{ user.username }}</span>
+                            <span class="leaderboard-score">{{ "%.2f"|format(user.total_waste_diverted_kg) }} kg</span>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="leaderboard-item">
+                        <span class="leaderboard-user">No waste donations yet!</span>
+                    </li>
+                {% endif %}
+            </ol>
+        </div>
+
+        <!-- Column 2: Top Money Donators -->
+        <div class="leaderboard-column">
+            <h2>By Financial Support</h2>
+            <ol class="leaderboard-list">
+                {% if top_money_donators %}
+                    {% for donator in top_money_donators %}
+                        <!-- Note: 'donator' is a tuple: (username, total_donated) -->
+                        <li class="leaderboard-item">
+                            <span class="leaderboard-rank">{{ loop.index }}</span>
+                            <span class="leaderboard-user">{{ donator.username }}</span>
+                            <span class="leaderboard-score-money">
+                                {{ "%.2f"|format(donator.total_donated) }}
+                                <!-- We can't be 100% sure of currency, so we'll just show the value -->
+                            </span>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="leaderboard-item">
+                        <span class="leaderboard-user">No money donations yet!</span>
+                    </li>
+                {% endif %}
+            </ol>
+        </div>
+
+    </div> <!-- end .leaderboard-container -->
+{% endblock %}

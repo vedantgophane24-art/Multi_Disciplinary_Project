@@ -1,0 +1,128 @@
+<!-- This template 'extends' the base.html layout -->
+{% extends "base.html" %}
+
+<!-- This 'block' will be injected into the 'content' block in base.html -->
+{% block content %}
+
+    <!-- This is the new hero section for the donate page -->
+    <div class="donate-hero">
+        <h1>Log Your Donation</h1>
+        <p>Thank you for contributing. Every item, big or small, helps us build a circular economy.</p>
+    </div>
+
+    <!-- 
+      The 'form-container' has a graphic element defined in style.css
+    -->
+    <div class="form-container">
+        
+        <!-- 
+          THIS IS A CRITICAL CHANGE:
+          We MUST add enctype="multipart/form-data" to the form
+          to allow file (image) uploads.
+        -->
+        <form action="" method="post" novalidate enctype="multipart/form-data">
+            {{ form.hidden_tag() }}  <!-- CRITICAL: Security token -->
+
+            <!-- --- SHARED FIELDS (Always Visible) --- -->
+            
+            <div class="form-group">
+                {{ form.donation_type.label }}
+                {{ form.donation_type(class="form-control") }}
+                {% for error in form.donation_type.errors %}
+                <span class="error-message">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                {{ form.ngo_id.label }}
+                {{ form.ngo_id(class="form-control") }}
+                {% for error in form.ngo_id.errors %}
+                <span class="error-message">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+
+            <!-- 
+              --- DYNAMIC FIELDS (JavaScript will show/hide these) --- 
+            -->
+
+            <!-- 
+              ID MUST MATCH JavaScript: 'clothes-fields'
+              This section contains fields for CLOTHES donations.
+            -->
+            <div id="clothes-fields" style="display: none;">
+                <div class="form-group">
+                    {{ form.estimated_weight_kg.label }}
+                    <!-- This is the new custom stepper -->
+                    <div class="stepper-input">
+                        <button type="button" class="stepper-btn" id="stepper-minus" tabindex="-1">-</button>
+                        {{ form.estimated_weight_kg(class="form-control", placeholder="e.g., 5.0", id="weight_input") }}
+                        <button type="button" class="stepper-btn" id="stepper-plus" tabindex="-1">+</button>
+                    </div>
+                    <small>{{ form.estimated_weight_kg.description }}</small>
+                    {% for error in form.estimated_weight_kg.errors %}
+                    <span class="error-message">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                
+                <!-- THIS IS THE NEW IMAGE UPLOAD FIELD -->
+                <div class="form-group">
+                    {{ form.image.label }}
+                    {{ form.image(class="form-control") }}
+                    <small>Optional. Upload a photo for AI grading (5MB max: jpg, png).</small>
+                    {% for error in form.image.errors %}
+                    <span class="error-message">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <!-- END OF NEW IMAGE FIELD -->
+            </div>
+
+            <!-- 
+              ID MUST MATCH JavaScript: 'money-fields'
+              This section contains fields for MONEY donations.
+            -->
+            <div id="money-fields" style="display: none;">
+                <div class="form-group">
+                    {{ form.amount.label }}
+                    {{ form.amount(class="form-control", placeholder="e.g., 1000") }}
+                    <small>{{ form.amount.description }}</small>
+                    {% for error in form.amount.errors %}
+                    <span class="error-message">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    {{ form.currency.label }}
+                    {{ form.currency(class="form-control") }}
+                    {% for error in form.currency.errors %}
+                    <span class="error-message">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- --- OTHER FIELDS (Always Visible) --- -->
+            
+            <div class="form-group">
+                {{ form.description.label }}
+                {{ form.description(class="form-control", rows=3, placeholder="2 pairs of jeans, 3 t-shirts...") }}
+                {% for error in form.description.errors %}
+                <span class="error-message">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.submit(class='cta-button') }}
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
+
+
+<!-- 
+  --- JAVASCRIPT BLOCK ---
+  This block loads our 'main.js' file, which contains
+  the logic for the dynamic form fields.
+-->
+{% block scripts %}
+    {{ super() }} <!-- Good practice to include any parent scripts -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock %}
