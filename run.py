@@ -1,3 +1,4 @@
+#.\venv\Scripts\Activate.ps1
 from app import create_app, db
 # 'Post' has been removed from this import
 from app.models import User, Donation, NGO
