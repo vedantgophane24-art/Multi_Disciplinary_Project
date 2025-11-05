@@ -1,5 +1,5 @@
 from datetime import datetime, timezone
-from app import db, login_manager  # Changed 'login' to 'login_manager' to match __init__.py
+from app import db, login_manager
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -49,9 +49,10 @@ class Donation(db.Model):
     amount = db.Column(db.Float, nullable=True)
     currency = db.Column(db.String(3), nullable=True) # 'INR', 'USD', etc.
 
-    # --- THIS IS THE NEW FIELD FOR THE IMAGE ---
+    # --- IMAGE & AI FIELDS ---
     image_filename = db.Column(db.String(100), nullable=True)
-    # -------------------------------------------
+    grade = db.Column(db.String(10), nullable=True) # <-- THIS IS THE MISSING LINE
+    # -------------------------
 
     description = db.Column(db.Text)
     timestamp = db.Column(db.DateTime, index=True, default=lambda: datetime.now(timezone.utc))
